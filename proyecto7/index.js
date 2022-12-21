@@ -49,5 +49,5 @@ expressApp.get("/user", (req, res) => {
 
 //Levantamos el servidor en el puerto 3000
 expressApp.listen(PORT, () =>
-  console.log(`CONECTADO  MI REY - Server in port ${PORT}`)
+  console.log(`CONECTADO HOMBRE !!! - Server in port ${PORT}`)
 );
