@@ -9,7 +9,6 @@ export const USERS_BBDD = [
     balance: "$2,039.35",
     picture: "http://placehold.it/32x32",
     age: 38,
-    password: "roman",
     eyeColor: "green",
     gender: "female",
     company: "BLUEGRAIN",
