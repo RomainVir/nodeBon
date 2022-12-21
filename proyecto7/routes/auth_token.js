@@ -3,11 +3,12 @@ import express from "express";
 import { USERS_BBDD } from "../bbdd.js";
 import { SignJWT, jwtVerify } from "jose";
 import checkEmailPassword from "../utils/check_email_password.js";
+import validateLoginDto from "../DTO/validate_login_dto.js";
 
 const authTokenRouter = express.Router();
 
-// Login con email y password
-authTokenRouter.post("/login", async (req, res) => {
+// Login con email y password y importaomos la funcion validate
+authTokenRouter.post("/login", validateLoginDto, async (req, res) => {
   // Obtenemos el email y password del body
   const { email, password } = req.body;
   // Si no existe alguno de esos dos campos devolvemos y 400(bad request)
