@@ -1,15 +1,11 @@
-// importamos express y la función para validar email y password
-import express from "express";
-import { USERS_BBDD } from "../bbdd.js";
+import checkEmailPassword from "../utils/check_email_password";
 import { SignJWT, jwtVerify } from "jose";
-import checkEmailPassword from "../utils/check_email_password.js";
-import validateLoginDto from "../DTO/validate_login_dto.js";
+import { USERS_BBDD } from "../bbdd";
 
-const authTokenRouter = express.Router();
+const controller = {};
 
-// Login con email y password y importaomos la funcion validate
-authTokenRouter.post("/login", validateLoginDto, async (req, res) => {
-  // Obtenemos el email y password del body
+controller.authTokenLogin = async(req, res) => {
+    // Obtenemos el email y password del body
   const { email, password } = req.body;
   // Si no existe alguno de esos dos campos devolvemos y 400(bad request)
   if (!email || !password) return res.sendStatus(400);
@@ -42,10 +38,11 @@ authTokenRouter.post("/login", validateLoginDto, async (req, res) => {
     // Si el usuario no existe enviamos un 401 (unauthorized)
     return res.sendStatus(401);
   }
-});
-//Solicitud autenticada para obtener el perfil del usuario
-authTokenRouter.get("/profile", async (req, res) => {
-  //OBTENER CABECERA Y COMPROBAR SU AUTENTICIDAD Y CADUCIDAD
+};
+
+controller.authTokenProfile = async (req, res) => {
+
+    //OBTENER CABECERA Y COMPROBAR SU AUTENTICIDAD Y CADUCIDAD
   const { authorization } = req.headers;
   if (!authorization) return res.sendStatus(401);
   try {
@@ -69,6 +66,5 @@ authTokenRouter.get("/profile", async (req, res) => {
   } catch {
     return res.sendStatus(401);
   }
-});
-
-export default authTokenRouter;
+};
+export default controller;

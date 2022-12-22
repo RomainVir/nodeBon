@@ -12,8 +12,6 @@ import cookieParser from "cookie-parser";
 import { nanoid } from "nanoid";
 
 import apiRouter from "./routes/api.js";
-//importamos el token
-import authTokenRouter from "./routes/auth_token.js";
 
 // Generamos un identificador con la libreria nanoid
 const sessionId = nanoid(); //=> "V1StGXR8_Z5jdHi6B-myT"
@@ -35,8 +33,7 @@ expressApp.use(express.text());
 expressApp.use(cookieParser());
 expressApp.use(logger("dev"));
 
-// middleware que hemos importado del router authSessionRouter
-expressApp.use("/auth-token", authTokenRouter);
+
 
 expressApp.get("/user", (req, res) => {
   res.send("Endpoint fuera del account");
