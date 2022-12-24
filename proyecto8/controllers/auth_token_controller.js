@@ -4,8 +4,8 @@ import { USERS_BBDD } from "../bbdd";
 
 const controller = {};
 
-controller.authTokenLogin = async(req, res) => {
-    // Obtenemos el email y password del body
+controller.authTokenLogin = async (req, res) => {
+  // Obtenemos el email y password del body
   const { email, password } = req.body;
   // Si no existe alguno de esos dos campos devolvemos y 400(bad request)
   if (!email || !password) return res.sendStatus(400);
@@ -41,9 +41,8 @@ controller.authTokenLogin = async(req, res) => {
 };
 
 controller.authTokenProfile = async (req, res) => {
-
-    //OBTENER CABECERA Y COMPROBAR SU AUTENTICIDAD Y CADUCIDAD
-  const { authorization } = req.headers;
+  //OBTENER CABECERA Y COMPROBAR SU AUTENTICIDAD Y CADUCIDAD
+  const authorization = req.headers.authorization.split(" ")[1];
   if (!authorization) return res.sendStatus(401);
   try {
     //codificamos la clave secret

@@ -33,8 +33,6 @@ expressApp.use(express.text());
 expressApp.use(cookieParser());
 expressApp.use(logger("dev"));
 
-
-
 expressApp.get("/user", (req, res) => {
   res.send("Endpoint fuera del account");
 });
